@@ -38,7 +38,7 @@ puts $c
 
 
 
-
+#This loop fills in the mapping between the two lists using Tk labels
 foreach i {1 2 3 4 5 6 7 8 9 10} {
 	grid [label .c.a$i -text "a$i"] -column 0 -row $i -sticky w
 	grid [label .c.d$i -text "         [lrange $c [expr $i-1] [expr $i-1]]         "] -column 1 -row $i -sticky e
