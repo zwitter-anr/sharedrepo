@@ -13,7 +13,7 @@ proc lshift {l i} {
 #2 lists of 5 elements each
 set a {}
 set b {}
-foreach i {1 2 3 4 5} {
+foreach i {1 2 3 4 5 6 7 8 9 10} {
 	set a [lappend a "a$i"]
 	set b [lappend b "b$i"]
 }
@@ -21,23 +21,27 @@ foreach i {1 2 3 4 5} {
 #List of 5 rand elements - maps the elements of list A to list B; CAVEAT: The elements are not unique - one-to-one mapping is not certain
 set c {}
 set n 10
-foreach j {1 2 3 4 5} {
+foreach j {1 2 3 4 5 6 7 8 9 10} {
 	set c [lappend c [eval ::tcl::mathfunc::round [expr [eval ::tcl::mathfunc::rand]*5]]]
 }
 
+
+
+
 #List of 5 rand elements - maps the elements of list A to list B; NOTE: The elements are UNIQUE - one-to-one mapping is certain
+
 	#This loop fills in 5 random non-unique elements into the list
 #set c {0 0 0 0 0}
 set c {}
-while {(5 != [llength $c])} {
+while {($n != [llength $c])} {
 	puts "rand(c) = $c"
 	puts "sort(c) = [lsort -unique $c]"
-	lappend c [eval ::tcl::mathfunc::round [expr ([eval ::tcl::mathfunc::rand]*4)+1]]
+	lappend c [eval ::tcl::mathfunc::round [expr ([eval ::tcl::mathfunc::rand]*($n-1))+1]]
 }
 puts $c
 
-	#This loop replaces the 5 elements with 5 unique random elements
+	#This loop replaces the n elements with unique random elements
 while {([lsort $c] != [lsort -unique $c])} {
-	set c [lshift $c [eval ::tcl::mathfunc::round [expr ([eval ::tcl::mathfunc::rand]*4)+1]]]
+	set c [lshift $c [eval ::tcl::mathfunc::round [expr ([eval ::tcl::mathfunc::rand]*($n-1))+1]]]
 }
 puts $c
