@@ -42,5 +42,7 @@ puts $c
 foreach i {1 2 3 4 5 6 7 8 9 10} {
 	grid [label .c.a$i -text "a$i"] -column 0 -row $i -sticky w
 	grid [label .c.d$i -text "         [lrange $c [expr $i-1] [expr $i-1]]         "] -column 1 -row $i -sticky e
-	grid [label .c.b$i -text "b$i"] -column 2 -row $i -sticky e
+	grid [label .c.b$i -text "b[lrange $c [expr $i-1] [expr $i-1]]"] -column 2 -row $i -sticky e
 }
+
+grid [button .c.btn -text "Randomize"] -column 1 -row [expr $n+1] -sticky w
