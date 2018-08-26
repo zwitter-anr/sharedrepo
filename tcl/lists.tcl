@@ -10,18 +10,21 @@ proc lshift {l i} {
 	return [lrange $l 0 end-1]
 }
 
+set n 10
+set ln {}
+for {set x 1} {$x<=$n} {incr x} {lappend ln $x}
+
 #2 lists of 5 elements each
 set a {}
 set b {}
-foreach i {1 2 3 4 5 6 7 8 9 10} {
+foreach i $ln {
 	set a [lappend a "a$i"]
 	set b [lappend b "b$i"]
 }
 
 #List of 5 rand elements - maps the elements of list A to list B; CAVEAT: The elements are not unique - one-to-one mapping is not certain
 set c {}
-set n 10
-foreach j {1 2 3 4 5 6 7 8 9 10} {
+foreach j $ln {
 	set c [lappend c [eval ::tcl::mathfunc::round [expr [eval ::tcl::mathfunc::rand]*5]]]
 }
 
