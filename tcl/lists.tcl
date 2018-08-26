@@ -11,29 +11,12 @@ proc lshift {l i} {
 }
 
 
-set n 10
-#List ln from 1 to n
-set ln {}
-for {set x 1} {$x<=$n} {incr x} {lappend ln $x}
-
-#2 lists of n elements each
-set a {}
-set b {}
-foreach i $ln {
-	set a [lappend a "a$i"]
-	set b [lappend b "b$i"]
-}
-
-
-proc get_random_elements {} {
+proc get_random_elements {ln n} {
 	#List of n random elements - maps the elements of list A to list B; CAVEAT: The elements are not unique - one-to-one mapping is not certain
 	set c {}
 	foreach j $ln {
-		set c [lappend c [eval ::tcl::mathfunc::round [expr [eval ::tcl::mathfunc::rand]*5]]]
+		set c [lappend c [eval ::tcl::mathfunc::round [expr [eval ::tcl::mathfunc::rand]*$n]]]
 	}
-
-
-
 
 	#List of n random elements - maps the elements of list A to list B; NOTE: The elements are UNIQUE - one-to-one mapping is certain
 
@@ -55,3 +38,22 @@ proc get_random_elements {} {
 	
 	return $c;
 }
+
+
+
+set n 5
+#List ln from 1 to n
+set ln {}
+for {set x 1} {$x<=$n} {incr x} {lappend ln $x}
+
+#2 lists of n elements each
+set a {}
+set b {}
+foreach i $ln {
+	set a [lappend a "a$i"]
+	set b [lappend b "b$i"]
+}
+
+
+set c [get_random_elements $ln $n];
+return [list $a $b $c $n $ln]
