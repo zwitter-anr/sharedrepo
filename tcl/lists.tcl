@@ -20,6 +20,7 @@ foreach i {1 2 3 4 5} {
 
 #List of 5 rand elements - maps the elements of list A to list B; CAVEAT: The elements are not unique - one-to-one mapping is not certain
 set c {}
+set n 10
 foreach j {1 2 3 4 5} {
 	set c [lappend c [eval ::tcl::mathfunc::round [expr [eval ::tcl::mathfunc::rand]*5]]]
 }
